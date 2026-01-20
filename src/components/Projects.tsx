@@ -141,6 +141,16 @@ export function Projects() {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [selectedProject]);
 
+  useEffect(() => {
+    if (selectedProject) {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = 'hidden';
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [selectedProject]);
+
   return (
     <section id="projects" className="relative py-24 px-6">
       <div className="max-w-6xl mx-auto relative z-10">
