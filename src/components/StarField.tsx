@@ -10,16 +10,33 @@ export function StarField() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    canvas.width = window.innerWidth;
-    canvas.height = document.documentElement.scrollHeight;
+    let canvasWidth = 0;
+    let canvasHeight = 0;
+
+    const resizeCanvas = () => {
+      const width = window.innerWidth;
+      const height = document.documentElement.scrollHeight;
+      const devicePixelRatio = window.devicePixelRatio || 1;
+
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      canvas.width = width * devicePixelRatio;
+      canvas.height = height * devicePixelRatio;
+      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
+
+      canvasWidth = width;
+      canvasHeight = height;
+    };
+
+    resizeCanvas();
 
     const stars: { x: number; y: number; radius: number; opacity: number; twinkleSpeed: number; type: 'circle' | 'cross' }[] = [];
     const starCount = 500;
 
     for (let i = 0; i < starCount; i++) {
       stars.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
+        x: Math.random() * canvasWidth,
+        y: Math.random() * canvasHeight,
         radius: Math.random() * 2.5 + 0.3,
         opacity: Math.random(),
         twinkleSpeed: Math.random() * 0.015 + 0.005,
@@ -32,7 +49,7 @@ export function StarField() {
     function animate() {
       if (!ctx || !canvas) return;
       
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
       stars.forEach(star => {
         star.opacity += star.twinkleSpeed;
@@ -89,8 +106,7 @@ export function StarField() {
     animate();
 
     const handleResize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = document.documentElement.scrollHeight;
+      resizeCanvas();
     };
 
     window.addEventListener('resize', handleResize);
