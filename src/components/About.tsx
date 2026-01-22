@@ -13,7 +13,7 @@ export function About() {
         >
           <h2 className="text-5xl font-bold text-center mb-4">
             <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              About My Journey
+              About Me
             </span>
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-purple-400 to-pink-400 mx-auto mb-16" />

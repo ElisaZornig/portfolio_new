@@ -20,11 +20,11 @@ export function Hero() {
         >
           <h1 className="text-6xl md:text-8xl font-bold mb-4">
             <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">
-              Your Name
+              Elisa Zornig
             </span>
           </h1>
           <p className="text-2xl md:text-3xl text-gray-300 mb-6">
-            Computer Science Student & Aspiring Developer
+            CMGT Student & Creative Developer
           </p>
           <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
             Exploring the universe of code, one project at a time. 
